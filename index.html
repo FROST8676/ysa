@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Questions</title>
+    <style>
+        body {
+            background: linear-gradient(45deg, pink, lightblue);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            margin: 0;
+        }
+        .question-container {
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+        }
+        button {
+            font-size: 18px;
+            padding: 10px 20px;
+            margin: 10px;
+            cursor: pointer;
+            border: none;
+            background: #fff;
+            color: #333;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+            position: relative;
+        }
+        button:hover {
+            transform: scale(1.1);
+        }
+        #noSuperior {
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- First Question -->
+    <div class="question-container" id="question1">
+        <h1>Are you mortal?</h1>
+        <button id="yesMortal">Yes</button>
+        <button id="noMortal">No</button>
+    </div>
+
+    <!-- Second Question -->
+    <div class="question-container" id="question2" style="display:none;">
+        <h1>Mr. Frost is superior to you?</h1>
+        <button id="yesSuperior">Yes</button>
+        <button id="noSuperior">No</button>
+    </div>
+
+    <script>
+        const yesMortalButton = document.getElementById('yesMortal');
+        const noMortalButton = document.getElementById('noMortal');
+        const question1 = document.getElementById('question1');
+        const question2 = document.getElementById('question2');
+        const noSuperiorButton = document.getElementById('noSuperior');
+
+        // When "No" is pressed on the first question, hide the "No" button
+        noMortalButton.addEventListener('click', () => {
+            noMortalButton.style.visibility = 'hidden';
+        });
+
+        // When "Yes" is pressed on the first question, move to the second question
+        yesMortalButton.addEventListener('click', () => {
+            question1.style.display = 'none';
+            question2.style.display = 'block';
+        });
+
+        // Make the "No" button run away on hover in the second question
+        noSuperiorButton.addEventListener('mouseover', () => {
+            const x = Math.random() * (window.innerWidth - noSuperiorButton.clientWidth);
+            const y = Math.random() * (window.innerHeight - noSuperiorButton.clientHeight);
+            noSuperiorButton.style.left = `${x}px`;
+            noSuperiorButton.style.top = `${y}px`;
+        });
+    </script>
+
+</body>
+</html>
